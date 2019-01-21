@@ -32,12 +32,31 @@ public class GreetingTest {
 		assertEquals("Buenos días", greeting.getGreeting(Language.SPANISH));
 	}
 
-	/*@Test
+	@Test
 	public void smokeTest4() {
 		Message mess = mock(Message.class); 
-		Greeting greeting = new Greeting();
+		when(mess.getDefaultLanguage()).thenReturn(Language.ENGLISH);
+		MyCalendar calendar = new MyCalendar(mess);
+		Greeting greeting = new Greeting(calendar);
+		when(mess.getMessage(calendar.moment, calendar.language)).thenReturn("Good morning");
 		greeting.getGreeting(null);
+		
+		// Two methods executed once
 		verify(mess, times(1)).getDefaultLanguage();
+		verify(mess, times(1)).getMessage(any(), any());
+	}
+	
+	@Test 
+	public void smokeTest5() {
+		Message mess = mock(Message.class); 
+		when(mess.getDefaultLanguage()).thenReturn(Language.ENGLISH);
+		MyCalendar calendar= new MyCalendar(mess);
+		Greeting greeting = new Greeting(calendar);
+		when(mess.getMessage(calendar.moment, calendar.language)).thenReturn("Buenos días");
+		greeting.getGreeting(Language.SPANISH);
+		
+		// First method not executed and second method executed once
+		verify(mess, times(0)).getDefaultLanguage();
 		verify(mess, times(1)).getMessage(greeting.myCalendar.moment, null);
-	}*/
+	}
 }

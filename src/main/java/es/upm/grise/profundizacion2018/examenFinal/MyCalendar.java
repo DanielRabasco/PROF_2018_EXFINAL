@@ -8,22 +8,24 @@ public class MyCalendar {
 	private Calendar calendar;
 	private int hour;
 	TimeOfTheDay moment;
-	private Language language;
+	Language language;
+	Message message;
 	
-	public MyCalendar () {
+	public MyCalendar (Message mess) {
 		calendar = Calendar.getInstance();
 		hour = calendar.get( Calendar.HOUR_OF_DAY );
+		this.message = mess;
 	}	
 
 	public String GetGreeting(){								
 		// Return the message		
-		return Message.getMessage( moment, language );
+		return message.getMessage( moment, language );
 	}
 	
 	public void SetLanguage(Language language) {
 		// Find out the greeting language
 		if ( language == null )
-			this.language = Message.getDefaultLanguage();
+			this.language = message.getDefaultLanguage();
 	}
 	
 	public void SetMoment() {
