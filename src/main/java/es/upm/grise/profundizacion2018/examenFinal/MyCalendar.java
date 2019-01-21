@@ -7,7 +7,7 @@ public class MyCalendar {
 	public String greeting;
 	private Calendar calendar;
 	private int hour;
-	private TimeOfTheDay moment;
+	TimeOfTheDay moment;
 	private Language language;
 	
 	public MyCalendar () {
